@@ -61,3 +61,23 @@ bin/kafka-console-consumer --bootstrap-server localhost:9092 --topic NewTopic1 -
 Send CSV File data to kafka
 
 bin/kafka-console-producer --broker-list localhost:9092 --topic NewTopic1 <bin/customers.csv
+
+--------------------------------------------------------------------------------------------------
+kafka-installation
+---------------------------------------
+Command uses
+--------------------------------------------
+Move into Kafka container
+docker exec -it <kafka_conatiner_id> /bin/sh
+--------------------------------------------------------
+Go inside kafka installation folder
+cd /opt/kafka_<version>/bin
+--------------------------------------------------------
+Create Kafka topic
+kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic quickstart
+
+Start Producer app (CLI)
+kafka-console-producer.sh --topic quickstart --bootstrap-server localhost:9092
+
+Start consumer app (CLI)
+kafka-console-consumer.sh --topic quickstart --from-beginning --bootstrap-server localhost:9092
